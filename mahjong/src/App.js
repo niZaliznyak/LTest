@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Card from "./components/Card/Card"
 import style from './App.module.css';
 import { generateUniqueArray, shuffle } from "./utils";
 
-const firstArray = generateUniqueArray(16, 60);
-const secondArray = shuffle(firstArray);
-const shuffledDeck = firstArray.concat(secondArray);
-
 function App() {
+  const firstArray = useMemo(() => generateUniqueArray(16, 60), []);
+  const secondArray = useMemo(() => shuffle(firstArray), [firstArray]);
+  const shuffledDeck = firstArray.concat(secondArray);
   
-  const [show, setShow] = React.useState(shuffledDeck);
-  const [currentIndex, setCurrentIndex] = React.useState([]);
+  const [show, setShow] = useState(shuffledDeck);
+  const [currentIndex, setCurrentIndex] = useState([]);
 
   useEffect(() => {
     let timer = setTimeout(() => setShow([]), 5000);
