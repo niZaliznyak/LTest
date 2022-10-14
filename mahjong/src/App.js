@@ -47,6 +47,7 @@ function App() {
           <React.Fragment key={index + index}>
             <Card
               number={number}
+              acitve={currentIndex.find(num => num[1] === index)}
               show={show.includes(number) || currentIndex.find(num => num[1] === index)}
               onClick={onTurnCard(number, index)}/>
           </React.Fragment>

@@ -15,10 +15,13 @@
 
 .card:hover {
     cursor: pointer;
-    border-color: #ED5517;
     box-shadow: 0 4px 6px -6px black;
 }
 
 .hidden {
     border-color: #CDCDCD;
+}
+
+.active {
+    border-color: #ED5517;
 }
