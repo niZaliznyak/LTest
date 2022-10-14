@@ -5,8 +5,8 @@ import { generateUniqueArray, shuffle } from "./utils";
 
 function App() {
   const firstArray = useMemo(() => generateUniqueArray(16, 60), []);
-  const secondArray = useMemo(() => shuffle(firstArray), [firstArray]);
-  const shuffledDeck = firstArray.concat(secondArray);
+  const secondArray = useMemo(() => [...firstArray], [firstArray]);
+  const shuffledDeck = useMemo(() => shuffle(firstArray.concat(secondArray)), [firstArray, secondArray]);;
   
   const [show, setShow] = useState(shuffledDeck);
   const [currentIndex, setCurrentIndex] = useState([]);
