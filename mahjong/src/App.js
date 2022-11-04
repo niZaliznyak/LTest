@@ -17,6 +17,7 @@ function App() {
   }, []);
 
   const onTurnCard = (number, index) => () => {
+    if(currentIndex.length === 2) return
     if (currentIndex.length !== 0 && currentIndex[0][1] === index) {
       return;
     }
