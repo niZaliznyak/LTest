@@ -40,15 +40,19 @@ function App() {
     <div className={style.wrapper}>
       <h1>Mahjong</h1>
       <div className={style.desk}>
-        {shuffledDeck.map((number, index) => (
-          <React.Fragment key={index + index}>
+        {shuffledDeck.map((number, index) => {
+          const isActive = currentIndex.find(num => num[1] === index);
+          const shouldShow = show.includes(number) || currentIndex.find(num => num[1] === index);
+          return (
+          <React.Fragment key={index}>
             <Card
               number={number}
-              acitve={currentIndex.find(num => num[1] === index)}
-              show={show.includes(number) || currentIndex.find(num => num[1] === index)}
-              onClick={onTurnCard(number, index)}/>
+              acitve={isActive}
+              show={shouldShow}
+              onClick={shouldShow ? undefined : onTurnCard(number, index)}/>
           </React.Fragment>
-        ))}
+        )
+        })}
       </div>
     </div>
   );
