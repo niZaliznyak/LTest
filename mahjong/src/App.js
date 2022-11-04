@@ -44,14 +44,14 @@ function App() {
           const isActive = currentIndex.find(num => num[1] === index);
           const shouldShow = show.includes(number) || currentIndex.find(num => num[1] === index);
           return (
-          <React.Fragment key={index}>
             <Card
+              key={index}
               number={number}
               acitve={isActive}
               show={shouldShow}
-              onClick={shouldShow ? undefined : onTurnCard(number, index)}/>
-          </React.Fragment>
-        )
+              onClick={shouldShow ? undefined : onTurnCard(number, index)}
+            />
+          );
         })}
       </div>
     </div>
