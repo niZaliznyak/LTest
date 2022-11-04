@@ -3,10 +3,10 @@ import './styles.css';
 function Card({number, show, acitve, onClick}) {
   let className = 'card';
   if (acitve) {
-    className = className + ' active';
+    className += ' active';
   }
   if (!show) {
-    className = className + ' hidden';
+    className += ' hidden';
   }
 
   return (
