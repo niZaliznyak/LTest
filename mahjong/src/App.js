@@ -32,7 +32,7 @@ function App() {
           setCurrentIndex(() => [...currentIndex, [number, index]]);
           setTimeout(() => {
             setCurrentIndex([]);
-          }, [500]);
+          }, 1000);
         } else {
           setCurrentIndex(() => [...currentIndex, [number, index]]);
         }
