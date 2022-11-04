@@ -1,13 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import Card from "./components/Card/Card"
 import style from './App.module.css';
-import { generateUniqueArray, shuffle } from "./utils";
+import { generateShuffledPrimeNumbers } from "./utils";
 
 function App() {
-  const firstArray = useMemo(() => generateUniqueArray(16, 60), []);
-  const secondArray = useMemo(() => [...firstArray], [firstArray]);
-  const shuffledDeck = useMemo(() => shuffle(firstArray.concat(secondArray)), [firstArray, secondArray]);;
-  
+  const shuffledDeck = useMemo(() => generateShuffledPrimeNumbers(), []);
   const [show, setShow] = useState(shuffledDeck);
   const [currentIndex, setCurrentIndex] = useState([]);
 
