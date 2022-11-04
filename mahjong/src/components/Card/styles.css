@@ -1,3 +1,8 @@
+:root {
+    --boreder-color-active: #ED5517;
+    --boreder-color-hidden: #CDCDCD;
+}
+
 .card {
     display: flex;
     justify-content: center;
@@ -19,9 +24,9 @@
 }
 
 .hidden {
-    border-color: #CDCDCD;
+    border-color: var(--boreder-color-hidden);
 }
 
 .active {
-    border-color: #ED5517;
+    border-color: var(--boreder-color-active);
 }
