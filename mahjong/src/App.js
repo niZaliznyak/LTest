@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import Card from "./components/Card/Card"
+import Card from './components/Card/Card';
 import style from './App.module.css';
-import { generateShuffledPrimeNumbers } from "./utils";
+import { generateShuffledPrimeNumbers } from './utils';
 
-function App() {
+function App () {
   const shuffledDeck = useMemo(() => generateShuffledPrimeNumbers(), []);
   const [show, setShow] = useState(shuffledDeck);
   const [currentIndex, setCurrentIndex] = useState([]);
 
   useEffect(() => {
-    let timer = setTimeout(() => setShow([]), 5000);
+    const timer = setTimeout(() => setShow([]), 5000);
 
     return () => {
       clearTimeout(timer);
@@ -17,7 +17,9 @@ function App() {
   }, []);
 
   const onTurnCard = (number, index) => () => {
-    if(currentIndex.length === 2) return
+    if (currentIndex.length === 2) {
+      return;
+    }
     if (currentIndex.length !== 0 && currentIndex[0][1] === index) {
       return;
     }
@@ -26,16 +28,16 @@ function App() {
       setShow([...show, number]);
       setCurrentIndex([]);
     } else {
-        if (currentIndex.length === 1 && currentIndex[0][0] !== number) {
-          setCurrentIndex(() => [...currentIndex, [number, index]]);
-          setTimeout(() => {
-            setCurrentIndex([]);
-          }, 1000);
-        } else {
-          setCurrentIndex(() => [...currentIndex, [number, index]]);
-        }
+      if (currentIndex.length === 1 && currentIndex[0][0] !== number) {
+        setCurrentIndex(() => [...currentIndex, [number, index]]);
+        setTimeout(() => {
+          setCurrentIndex([]);
+        }, 1000);
+      } else {
+        setCurrentIndex(() => [...currentIndex, [number, index]]);
+      }
     }
-  }
+  };
 
   return (
     <div className={style.wrapper}>
