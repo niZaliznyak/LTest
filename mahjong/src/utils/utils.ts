@@ -1,4 +1,4 @@
-const isPrime = num => {
+const isPrime = (num: number): boolean => {
   if (num <= 1) {
     return false;
   }
@@ -13,13 +13,13 @@ const isPrime = num => {
   return true;
 };
 
-const shuffle = array => {
+const shuffle = (array: number[]): number[] => {
   const newArray = [...array];
   newArray.sort(() => Math.random() - 0.5);
   return newArray;
 };
 
-export const generateShuffledPrimeNumbers = () => {
+export const generateShuffledPrimeNumbers = ():number[] => {
   const primeNumbers = Array.from(Array(55), (_, i) => i + 1).filter(num =>
     isPrime(num)
   );
