@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Card from './components/Card/Card';
 import { generateShuffledPrimeNumbers } from './utils/utils';
 
-function App () {
+function App (): JSX.Element {
   const shuffledDeck = useMemo(() => generateShuffledPrimeNumbers(), []);
   const [show, setShow] = useState(shuffledDeck);
   const [currentIndex, setCurrentIndex] = useState<Array<number[]>>([]);

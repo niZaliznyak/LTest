@@ -7,7 +7,9 @@ const isPrime = (num: number): boolean => {
   }
   const s = Math.sqrt(num);
   for (let i = 3; i <= s; i += 2) {
-    if (num % i === 0) return false;
+    if (num % i === 0) {
+      return false;
+    }
   }
 
   return true;
@@ -19,7 +21,7 @@ const shuffle = (array: number[]): number[] => {
   return newArray;
 };
 
-export const generateShuffledPrimeNumbers = ():number[] => {
+export const generateShuffledPrimeNumbers = (): number[] => {
   const primeNumbers = Array.from(Array(55), (_, i) => i + 1).filter(num =>
     isPrime(num)
   );
