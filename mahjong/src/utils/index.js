@@ -1,32 +1,29 @@
-export const generateUniqueArray = (arrayLength, maxNumber) => {
+const isPrime = num => {
+  if (num <= 1) {
+    return false;
+  }
+  if (num % 2 === 0 && num > 2) {
+    return false;
+  }
+  const s = Math.sqrt(num);
+  for (let i = 3; i <= s; i += 2) {
+    if (num % i === 0) return false;
+  }
 
-    let randomNumbers = [];
+  return true;
+};
 
-    function generateNumber(maxNr) {
-        let random = (Math.random() * maxNr).toFixed();
+const shuffle = array => {
+  const newArray = [...array];
+  newArray.sort(() => Math.random() - 0.5);
+  return newArray;
+};
 
-        random = Number(random);
+export const generateShuffledPrimeNumbers = () => {
+  const primeNumbers = Array.from(Array(55), (_, i) => i + 1).filter(num =>
+    isPrime(num)
+  );
 
-        if(!randomNumbers.includes(random)) {
-            randomNumbers.push(random);
-            return random;
-        } else {
-            if(randomNumbers.length < maxNr) {
-            return  generateNumber(maxNr);
-            } else {
-            console.log('No more numbers available.')
-            return false;
-            }
-        }
-    }
-
-    const newArray = Array.from(Array(arrayLength), () => generateNumber(maxNumber));
-
-    return newArray;
-}
-
-export const shuffle = (array) => {
-    const newArray = [...array];
-    newArray.sort(() => Math.random() - 0.5);
-    return newArray;
-}
+  const shuffledSliced = shuffle([...primeNumbers, ...primeNumbers]);
+  return shuffledSliced;
+};
