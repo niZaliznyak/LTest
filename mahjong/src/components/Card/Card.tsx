@@ -1,9 +1,16 @@
 import React from 'react';
 import './styles.css';
 
-function Card ({ number, show, acitve, onClick }) {
+type CardProps = {
+  number: number,
+  show: boolean,
+  active: boolean,
+  onClick?: () => void,
+}
+
+const Card: React.FC<CardProps> = ({ number, show, active, onClick }) => {
   let className = 'card';
-  if (acitve) {
+  if (active) {
     className += ' active';
   }
   if (!show) {
@@ -15,6 +22,6 @@ function Card ({ number, show, acitve, onClick }) {
       {show && number}
     </div>
   );
-}
+};
 
 export default Card;

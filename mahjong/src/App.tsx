@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import Card from './components/Card/Card';
-import style from './App.module.css';
-import { generateShuffledPrimeNumbers } from './utils';
+import { generateShuffledPrimeNumbers } from './utils/utils';
 
-function App () {
+function App (): JSX.Element {
   const shuffledDeck = useMemo(() => generateShuffledPrimeNumbers(), []);
   const [show, setShow] = useState(shuffledDeck);
-  const [currentIndex, setCurrentIndex] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState<Array<number[]>>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShow([]), 5000);
@@ -16,7 +15,7 @@ function App () {
     };
   }, []);
 
-  const onTurnCard = (number, index) => () => {
+  const onTurnCard = (number: number, index: number): () => void => () => {
     if (currentIndex.length === 2) {
       return;
     }
@@ -29,28 +28,28 @@ function App () {
       setCurrentIndex([]);
     } else {
       if (currentIndex.length === 1 && currentIndex[0][0] !== number) {
-        setCurrentIndex(() => [...currentIndex, [number, index]]);
+        setCurrentIndex([...currentIndex, [number, index]]);
         setTimeout(() => {
           setCurrentIndex([]);
         }, 1000);
       } else {
-        setCurrentIndex(() => [...currentIndex, [number, index]]);
+        setCurrentIndex([...currentIndex, [number, index]]);
       }
     }
   };
 
   return (
-    <div className={style.wrapper}>
+    <div className='wrapper'>
       <h1>Mahjong</h1>
-      <div className={style.desk}>
+      <div className='desk'>
         {shuffledDeck.map((number, index) => {
-          const isActive = currentIndex.find(num => num[1] === index);
-          const shouldShow = show.includes(number) || currentIndex.find(num => num[1] === index);
+          const isActive: boolean = !!currentIndex.find(num => num[1] === index);
+          const shouldShow: boolean = show.includes(number) || !!currentIndex.find(num => num[1] === index);
           return (
             <Card
               key={index}
               number={number}
-              acitve={isActive}
+              active={isActive}
               show={shouldShow}
               onClick={shouldShow ? undefined : onTurnCard(number, index)}
             />
